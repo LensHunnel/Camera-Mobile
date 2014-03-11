@@ -5,14 +5,14 @@
 ## ultrasonic_1.py
 # Measure distance using an ultrasonic sensor
 #
-# Author : Lens Hunnel
+# Auteur : Lens Hunnel
 # Date   : 11/03/2014
-# Import required Python libraries
+# Importation des librairies Python requises
 import time
 import RPi.GPIO as GPIO
 
-# Use BCM GPIO references
-# instead of physical pin numbers
+# Utilise les references GPIO BCM 
+# au lieu des numeros de pins
 GPIO.setmode(GPIO.BCM)
 
 # Define GPIO to use on Pi
