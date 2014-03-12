@@ -36,7 +36,7 @@ while serveur_lance:
     except select.error:
         pass
     else:
-    	try:
+        try:
         # On parcourt la liste des clients a lire
 	        for client in clients_a_lire:
 	            # Client est de type socket
