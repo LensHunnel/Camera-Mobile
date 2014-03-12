@@ -15,23 +15,23 @@ import RPi.GPIO as GPIO
 # au lieu des numeros de pins
 GPIO.setmode(GPIO.BCM)
 
-# Define GPIO to use on Pi
+# definition des GPIO que nous allons utiliser 
 GPIO_TRIGGER = 23
 GPIO_ECHO = 24
 
 print "Ultrasonic Measurement"
 
-# Set pins as output and input
+print" Definition des entrées/sorties"
 GPIO.setup(GPIO_TRIGGER,GPIO.OUT)  # Trigger
 GPIO.setup(GPIO_ECHO,GPIO.IN)      # Echo
 
-# Set trigger to False (Low)
+print" mise à zero de trigger"
 GPIO.output(GPIO_TRIGGER, False)
 
-# Allow module to settle
+print "Temps d'initialisation du module"
 time.sleep(0.5)
 
-# Send 10us pulse to trigger
+print "Envoie d'une impulsion de 10uS à la broche Trigger"
 GPIO.output(GPIO_TRIGGER, True)
 time.sleep(0.00001)
 GPIO.output(GPIO_TRIGGER, False)
@@ -42,14 +42,14 @@ while GPIO.input(GPIO_ECHO)==0:
 while GPIO.input(GPIO_ECHO)==1:
   stop = time.time()
 
-# Calculate pulse length
+print "Calcul de la longueur de l'impulsion de la broche Echo"
 elapsed = stop-start
 
-# Distance pulse travelled in that time is time
-# multiplied by the speed of sound (cm/s)
+print"""Distance pulse travelled in that time is time
+multiplié par la vitesse du son (cm/s)"""
 distance = elapsed * 34000
 
-# That was the distance there and back so halve the value
+print "That was the distance there and back so halve the value"
 distance = distance / 2
 
 print "Distance : %.1f" % distance
