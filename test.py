@@ -38,17 +38,17 @@ while serveur_lance:
     else:
         try:
         # On parcourt la liste des clients a lire
-	        for client in clients_a_lire:
+                for client in clients_a_lire:
 	            # Client est de type socket
-	            msg_recu = client.recv(1024)
+                    msg_recu = client.recv(1024)
 	            # Peut planter si le message contient des caracteres speciaux
-	            msg_recu = msg_recu.decode()
+                    msg_recu = msg_recu.decode()
 	            print("Recu {}".format(msg_recu))
-	            client.send(b"5 / 5")
+                    client.send(b"5 / 5")
 	            if msg_recu == "f":
-	                print("Fermeture de la connexion")
-	                client.shutdown(0)
-	                client.send(b"closing...")
+                        print("Fermeture de la connexion")
+                        client.shutdown(0)
+                        client.send(b"closing...")
         except socket.error:
         	print("connexion closed")
         	pass
