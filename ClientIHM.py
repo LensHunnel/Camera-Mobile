@@ -80,8 +80,12 @@ class ControlsIHM(Frame):
         self.messageRecu()
     def ClicBtnPause (self):
         print"event Pause"
+        self.envoiMsg('p')
+        self.messageRecu()
     def ClicBtnStop (self):
         print"event Stop"
+        self.envoiMsg('s')
+        self.messageRecu()
     def AppuiBtnHaut (self,event):
         self.ClicBtnHaut()
     def AppuiBtnBas (self,event):
