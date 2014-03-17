@@ -11,6 +11,7 @@ print("Le serveur ecoute a present sur le port {}".format(port))
 
 serveur_lance = True
 clients_connectes = []
+
 while serveur_lance:
     # On va verifier que de nouveaux clients ne demandent pas a se connecter
     # Pour cela, on ecoute la connexion_principale en lecture
@@ -43,17 +44,15 @@ while serveur_lance:
                     msg_recu = client.recv(1024)
 	            # Peut planter si le message contient des caracteres speciaux
                     msg_recu = msg_recu.decode()
-	            print("Recu {}".format(msg_recu))
+                    print("Recu {}".format(msg_recu))
                     client.send(b"5 / 5")
-	            if msg_recu == "f":
+                    if msg_recu == "s":
                         print("Fermeture de la connexion")
                         client.shutdown(0)
-                        client.send(b"closing...")
         except socket.error:
         	print("connexion closed")
-        	pass
-        else:
-        	pass
+        	serveur_lance=False
+
 print("Fermeture des connexions")
 for client in clients_connectes:
     client.close()

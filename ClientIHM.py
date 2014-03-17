@@ -1,5 +1,8 @@
 # -*- coding: cp1252 -*-
 from Tkinter import *
+import socket
+hote = "localhost"
+port = 12800
 class ControlsIHM(Frame):
     def __init__(self):
         Frame.__init__(self)
@@ -25,7 +28,7 @@ class ControlsIHM(Frame):
         self.bas=PhotoImage(file="bas.gif")
         self.lblBas=Button(self.f3,image=self.bas, command=self.ClicBtnBas)
         self.lblBas.pack(side=BOTTOM,pady=5,padx=5)
-        
+
         self.pause=PhotoImage(file="pause.gif")
         self.lblPause=Button(self.f2,image=self.pause, command=self.ClicBtnPause)
         self.lblPause.pack(side=LEFT,padx=5,pady=5)
@@ -50,22 +53,40 @@ class ControlsIHM(Frame):
         self.master.bind("<Right>", self.AppuiBtnDroite) # Flèche droite
         self.master.bind("<space>", self.AppuiBtnPause) # Flèche espace
         self.master.bind("<Key-s>", self.AppuiBtnStop) # Flèche droite
+        try:
+            self.connexion_avec_serveur = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            self.connexion_avec_serveur.connect((hote, port))
+            print("connexion etablie avec le port {}".format(port))
+        except socket.error:
+            self.connexion_avec_serveur.close()
+            print("Fermeture de la connexion")
+            
     def ClicBtnHaut (self):
         print"event up"
+        self.envoiMsg('f')
+        self.messageRecu()
+
     def ClicBtnBas (self):
         print"event down"
+        self.envoiMsg('d')
+        self.messageRecu()
     def ClicBtnGauche (self):
         print"event Left"
-    def ClicBtnPause (self):
-        print"event Pause"
+        self.envoiMsg('l')
+        self.messageRecu()
     def ClicBtnDroite (self):
         print"event Right"
+        self.envoiMsg('r')
+        self.messageRecu()
+    def ClicBtnPause (self):
+        print"event Pause"
     def ClicBtnStop (self):
         print"event Stop"
     def AppuiBtnHaut (self,event):
         self.ClicBtnHaut()
     def AppuiBtnBas (self,event):
         self.ClicBtnBas()
+
     def AppuiBtnGauche (self,event):
         self.ClicBtnGauche()
     def AppuiBtnDroite (self,event):
@@ -74,5 +95,17 @@ class ControlsIHM(Frame):
         self.ClicBtnPause()
     def AppuiBtnStop (self,event):
         self.ClicBtnStop()
+    def messageRecu (self):
+        try:
+            msg_recu = self.connexion_avec_serveur.recv(1024)
+            if msg_recu == "fin":
+                self.connexion_avec_serveur.close()
+                print("Fermeture de la connexion")
+            print(msg_recu.decode())
+        except socket.error:
+            print("Fermeture de la connexion")
+    def envoiMsg(self,commande):
+        commande.encode()
+        self.connexion_avec_serveur.send(commande)
 if __name__ == '__main__':                                                 #33
     ControlsIHM().mainloop()
