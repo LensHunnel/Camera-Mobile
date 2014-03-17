@@ -1,7 +1,7 @@
 # -*- coding: cp1252 -*-
 from Tkinter import *
 import socket
-hote = "localhost"
+hote = "172.16.0.1"
 port = 12800
 class ControlsIHM(Frame):
     def __init__(self):
@@ -63,8 +63,8 @@ class ControlsIHM(Frame):
             
     def ClicBtnHaut (self):
         print"event up"
-        self.envoiMsg('f')
-        self.messageRecu()
+        self.envoiMsg('u')
+        #self.messageRecu()
 
     def ClicBtnBas (self):
         print"event down"
@@ -109,7 +109,9 @@ class ControlsIHM(Frame):
         except socket.error:
             print("Fermeture de la connexion")
     def envoiMsg(self,commande):
-        commande.encode()
-        self.connexion_avec_serveur.send(commande)
+         commande.encode()
+         self.connexion_avec_serveur.send(commande)
+         print"message "+commande+" envoye"
+
 if __name__ == '__main__':                                                 #33
     ControlsIHM().mainloop()
