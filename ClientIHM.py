@@ -1,7 +1,7 @@
 # -*- coding: cp1252 -*-
 from Tkinter import *
 import socket
-hote = "172.16.0.1"
+hote = "localhost"
 port = 12800
 class ControlsIHM(Frame):
     def __init__(self):
@@ -63,7 +63,7 @@ class ControlsIHM(Frame):
             
     def ClicBtnHaut (self):
         print"event up"
-        self.envoiMsg('u')
+        self.envoiMsg('ultrason')
         #self.messageRecu()
 
     def ClicBtnBas (self):

@@ -1,6 +1,8 @@
+# -*- coding: cp1252 -*-
+
 import socket
 import select
-
+from ultrasontest import Ultrason
 hote = ''
 port = 12800
 
@@ -46,6 +48,10 @@ while serveur_lance:
                     msg_recu = msg_recu.decode()
                     print("Recu {}".format(msg_recu))
                     client.send(b"5 / 5")
+                    if msg_recu == "ultrason":
+                        distance = Ultrason().getdistance()
+                        client.send(str(distance))
+                    
                     if msg_recu == "s":
                         print("Fermeture de la connexion")
                         client.shutdown(0)
