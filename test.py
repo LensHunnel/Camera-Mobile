@@ -52,7 +52,7 @@ while serveur_lance:
                         distance = Ultrason().getdistance()
                         client.send(str(distance))
                     
-                    if msg_recu == "s":
+                    if msg_recu == "s" or msg_recu = "fin":
                         print("Fermeture de la connexion")
                         client.shutdown(0)
         except socket.error:
