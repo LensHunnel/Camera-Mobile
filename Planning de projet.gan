@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2014-02-24" view-index="0" gantt-divider-location="353" resource-divider-location="300" version="2.0" locale="fr">
+<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2014-02-24" view-index="0" gantt-divider-location="315" resource-divider-location="300" version="2.0" locale="fr">
     <description/>
-    <view zooming-state="default:6" id="gantt-chart">
-        <field id="tpd3" name="Nom" width="57" order="0"/>
-        <field id="tpd4" name="Date de début" width="21" order="1"/>
-        <field id="tpd5" name="Date de fin" width="21" order="2"/>
+    <view zooming-state="default:5" id="gantt-chart">
+        <field id="tpd3" name="Nom" width="54" order="0"/>
+        <field id="tpd4" name="Date de début" width="16" order="1"/>
+        <field id="tpd5" name="Date de fin" width="28" order="2"/>
     </view>
     <view id="resource-table">
-        <field id="0" name="Nom" width="70" order="0"/>
-        <field id="1" name="Rôle par défaut" width="29" order="1"/>
+        <field id="0" name="Nom" width="52" order="0"/>
+        <field id="1" name="Rôle par défaut" width="47" order="1"/>
     </view>
     <!-- -->
     <calendars>
@@ -35,13 +35,17 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
-        <task id="0" name="camera" color="#8cb6ce" meeting="false" start="2014-02-27" duration="18" complete="0" expand="true"/>
-        <task id="1" name="capteur ultrason" color="#8cb6ce" meeting="false" start="2014-03-07" duration="3" complete="0" expand="true"/>
-        <task id="2" name="commander mes moteurs" color="#8cb6ce" meeting="false" start="2014-03-13" duration="1" complete="0" expand="true"/>
-        <task id="3" name="realisation communication reseau" color="#8cb6ce" meeting="false" start="2014-03-13" duration="1" complete="0" expand="true"/>
-        <task id="4" name="commander les moteurs par le reseau" color="#8cb6ce" meeting="false" start="2014-03-13" duration="1" complete="0" expand="true"/>
-        <task id="5" name="assembler toute les fonctions" color="#8cb6ce" meeting="false" start="2014-03-13" duration="1" complete="0" expand="true"/>
-        <task id="6" name="tests" color="#8cb6ce" meeting="false" start="2014-03-13" duration="1" complete="0" expand="true"/>
+        <task id="0" name="camera" color="#8cb6ce" meeting="false" start="2014-02-28" duration="2" complete="100" expand="true"/>
+        <task id="2" name="commander mes moteurs" color="#99ff33" meeting="false" start="2014-03-04" duration="5" complete="100" expand="true"/>
+        <task id="8" name="Cablage et montage moteurs" color="#ffff00" meeting="false" start="2014-03-04" duration="1" complete="100" expand="true"/>
+        <task id="1" name="capteur ultrason" color="#0000cc" meeting="false" start="2014-03-05" duration="5" complete="100" expand="true"/>
+        <task id="3" name="realisation communication reseau" color="#ff0033" meeting="false" start="2014-03-12" duration="2" complete="100" expand="true"/>
+        <task id="4" name="commander les moteurs par le reseau" color="#33ff66" meeting="false" start="2014-03-13" duration="2" complete="100" expand="true"/>
+        <task id="7" name="Realisation de l'interface graphique" color="#990099" meeting="false" start="2014-03-14" duration="4" complete="100" expand="true"/>
+        <task id="5" name="assembler et ameliorer toutes les fonctionnalités" color="#cccccc" meeting="false" start="2014-03-19" duration="4" complete="0" expand="true"/>
+        <task id="6" name="tests" color="#cccccc" meeting="false" start="2014-03-25" duration="4" complete="0" expand="true"/>
+        <task id="10" name="Realisation d'un PCB" color="#cccccc" meeting="false" start="2014-03-31" duration="5" complete="0" expand="true"/>
+        <task id="11" name="Realisation de la partie mécanique" color="#cccccc" meeting="false" start="2014-04-04" duration="3" complete="0" expand="true"/>
     </tasks>
     <resources/>
     <allocations/>
@@ -56,11 +60,25 @@
         <displaycolumn property-id="tpd9" order="-1" width="75" visible="false"/>
         <displaycolumn property-id="tpd8" order="-1" width="75" visible="false"/>
         <displaycolumn property-id="tpd0" order="-1" width="75" visible="false"/>
-        <displaycolumn property-id="tpd3" order="0" width="199" visible="true"/>
-        <displaycolumn property-id="tpd4" order="1" width="75" visible="true"/>
-        <displaycolumn property-id="tpd5" order="2" width="75" visible="true"/>
+        <displaycolumn property-id="tpd3" order="0" width="171" visible="true"/>
+        <displaycolumn property-id="tpd4" order="1" width="52" visible="true"/>
+        <displaycolumn property-id="tpd5" order="2" width="88" visible="true"/>
     </taskdisplaycolumns>
-    <previous/>
+    <previous>
+        <previous-tasks name="19/03/2014">
+            <previous-task id="0" start="2014-02-28" duration="2" meeting="false" super="false"/>
+            <previous-task id="2" start="2014-03-04" duration="5" meeting="false" super="false"/>
+            <previous-task id="8" start="2014-03-04" duration="1" meeting="false" super="false"/>
+            <previous-task id="1" start="2014-03-05" duration="5" meeting="false" super="false"/>
+            <previous-task id="3" start="2014-03-12" duration="2" meeting="false" super="false"/>
+            <previous-task id="4" start="2014-03-13" duration="2" meeting="false" super="false"/>
+            <previous-task id="7" start="2014-03-14" duration="4" meeting="false" super="false"/>
+            <previous-task id="5" start="2014-03-19" duration="4" meeting="false" super="false"/>
+            <previous-task id="6" start="2014-03-25" duration="4" meeting="false" super="false"/>
+            <previous-task id="10" start="2014-03-31" duration="5" meeting="false" super="false"/>
+            <previous-task id="11" start="2014-04-04" duration="3" meeting="false" super="false"/>
+        </previous-tasks>
+    </previous>
     <roles roleset-name="Default"/>
     <roles roleset-name="SoftwareDevelopment"/>
 </project>
