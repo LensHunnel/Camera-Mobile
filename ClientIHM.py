@@ -13,8 +13,13 @@ class ControlsIHM(Frame):
         frame.pack(side = LEFT)
         frame2 = Frame(self,  borderwidth=1)
         frame2.pack(side = LEFT)
-        self.champs_label = Label(frame2,text="Distance Capteur Ultrason: 4.3 cm")
-        self.champs_label.pack(side=TOP, pady=5)
+        frame3 = Frame(frame2,  borderwidth=1)
+        frame3.pack(side=TOP)
+        self.champs_label = Label(frame3,text=" cm")
+        self.champs_label.pack(side=RIGHT,pady=5)
+        self.BtnUltrason=Button(frame3,text = "Distance Obstacle",command=self.ClicBtnUltrason)
+        self.BtnUltrason.pack(side=RIGHT,pady=25,padx=5)
+
         self.f1 = Frame(frame, borderwidth=1)
         self.f1.pack(fill=X,side=TOP)
         self.f2 = Frame(frame,  borderwidth=1)
@@ -41,18 +46,20 @@ class ControlsIHM(Frame):
         self.lblHaut=Button(self.f1,image=self.haut,command=self.ClicBtnHaut)
         self.lblHaut.pack(side=TOP,pady=5,padx=5)
 
+        self.quitter=Button(frame2,text="Quitter",command=self.quit)
+        self.quitter.pack(side=BOTTOM, pady=25)
+
         self.stop=PhotoImage(file="stop.gif")
         self.lblStop=Button(frame2,image=self.stop,command=self.ClicBtnStop)
         self.lblStop.pack(side=BOTTOM,pady=5,padx=5)
-
-        self.quitter=Button(frame2,text="Quitter",command=self.quit)
-        self.quitter.pack(side=BOTTOM, pady=20)
+        
         self.master.bind("<Up>", self.AppuiBtnHaut) # Flèche haut
         self.master.bind("<Down>", self.AppuiBtnBas) # Flèche bas
         self.master.bind("<Left>", self.AppuiBtnGauche) # Flèche gauche
         self.master.bind("<Right>", self.AppuiBtnDroite) # Flèche droite
         self.master.bind("<space>", self.AppuiBtnPause) # Flèche espace
         self.master.bind("<Key-s>", self.AppuiBtnStop) # Flèche droite
+        self.master.bind("<Key-u>", self.AppuiBtnUltrason) # Flèche droite
         try:
             self.connexion_avec_serveur = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.connexion_avec_serveur.connect((hote, port))
@@ -63,8 +70,9 @@ class ControlsIHM(Frame):
             
     def ClicBtnHaut (self):
         print"event up"
-        self.envoiMsg('ultrason')
-        #self.messageRecu()
+        self.envoiMsg('u')
+        self.messageRecu()
+        
 
     def ClicBtnBas (self):
         print"event down"
@@ -86,6 +94,12 @@ class ControlsIHM(Frame):
         print"event Stop"
         self.envoiMsg('s')
         self.messageRecu()
+    def ClicBtnUltrason (self):
+        print"event Ultrason"
+        self.envoiMsg('ultrason')
+        dis=self.messageRecu()
+        dis=float(self.messageRecu())
+        self.champs_label["text"]="%.1f"%dis+" cm"
     def AppuiBtnHaut (self,event):
         self.ClicBtnHaut()
     def AppuiBtnBas (self,event):
@@ -99,6 +113,8 @@ class ControlsIHM(Frame):
         self.ClicBtnPause()
     def AppuiBtnStop (self,event):
         self.ClicBtnStop()
+    def AppuiBtnUltrason (self,event):
+        self.ClicBtnUltrason()
     def messageRecu (self):
         try:
             msg_recu = self.connexion_avec_serveur.recv(1024)
@@ -108,6 +124,7 @@ class ControlsIHM(Frame):
             print(msg_recu.decode())
         except socket.error:
             print("Fermeture de la connexion")
+        return msg_recu
     def envoiMsg(self,commande):
          commande.encode()
          self.connexion_avec_serveur.send(commande)
